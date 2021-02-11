@@ -47,7 +47,8 @@ Skip: {conf.Skip}"
             Console.WriteLine($"Найдено {files.Length} файлов.");
             var wc = new WebClient();
             var newLine = true;
-            for (var i = conf.Skip; i < files.Length; i++)
+            var i = conf.Skip;
+            for (; i < files.Length; i++)
             {
                 if (Apis.Length == 0)
                 {
@@ -104,7 +105,9 @@ Skip: {conf.Skip}"
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Загрузка завершена.");
+            conf.Skip = i;
+            Config.Save(conf);
+            Console.WriteLine($"Загрузка завершена. Skip сохранён: {conf.Skip}.");
             Console.ReadLine();
         }
     }
