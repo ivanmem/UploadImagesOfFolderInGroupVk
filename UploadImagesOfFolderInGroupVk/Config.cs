@@ -10,7 +10,7 @@ namespace UploadImagesOfFolderInGroupVk
         public string[] AccessTokens = Array.Empty<string>();
         public long GroupId;
         public long AlbumId;
-        public long Skip = 0;
+        public int Skip = 0;
         public string? PathFiles;
         private static string _settingsPath = Path.Combine(Directory.GetCurrentDirectory(), "settings.json");
 

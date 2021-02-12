@@ -32,7 +32,7 @@ AccessTokens Length: {conf.AccessTokens.Length}
 PathFiles: {conf.PathFiles}
 GroupId: {conf.GroupId}
 AlbumId: {conf.AlbumId}
-Skip: {conf.Skip}"
+Skip: {conf.Skip}".Trim()
             );
             Apis = conf.AccessTokens.Select(x =>
             {
@@ -52,8 +52,8 @@ Skip: {conf.Skip}"
             {
                 if (Apis.Length == 0)
                 {
-                    Console.WriteLine($"Токены без лимита закончились. Всего выполнилось: {i-1}.");
                     i--;
+                    Console.WriteLine($"Токены без лимита закончились. Всего выполнилось: {i}.");
                     break;
                 }
                 
@@ -108,10 +108,11 @@ Skip: {conf.Skip}"
             Console.WriteLine();
             conf.Skip = i;
             Config.Save(conf);
-            Console.WriteLine(@$"Загрузка завершена. Skip сохранён: {conf.Skip}.
-Последнее загруженное фото: {files[i]}
-Следующее будет: {files[i+1]}
-");
+            Console.WriteLine(@$"
+Загрузка завершена. Skip сохранён: {conf.Skip}.
+Последнее загруженное фото: {files.ElementAtOrDefault(i) ?? "Отсутствует"}
+При следующем запуске начнёт с: {files.ElementAtOrDefault(i+1) ?? "Отсутствует"}".Trim()
+            );
             Console.ReadLine();
         }
     }
