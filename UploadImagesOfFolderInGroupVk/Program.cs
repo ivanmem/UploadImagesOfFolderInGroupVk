@@ -53,6 +53,7 @@ Skip: {conf.Skip}"
                 if (Apis.Length == 0)
                 {
                     Console.WriteLine($"Токены без лимита закончились. Всего выполнилось: {i-1}.");
+                    i--;
                     break;
                 }
                 
@@ -107,7 +108,10 @@ Skip: {conf.Skip}"
             Console.WriteLine();
             conf.Skip = i;
             Config.Save(conf);
-            Console.WriteLine($"Загрузка завершена. Skip сохранён: {conf.Skip}.");
+            Console.WriteLine(@$"Загрузка завершена. Skip сохранён: {conf.Skip}.
+Последнее загруженное фото: {files[i]}
+Следующее будет: {files[i+1]}
+");
             Console.ReadLine();
         }
     }
