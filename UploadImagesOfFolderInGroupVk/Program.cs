@@ -39,7 +39,7 @@ Skip: {conf.Skip}"
                 var api = new VkApi();
                 api.Authorize(new ()
                 {
-                    AccessToken = x.Trim()
+                    AccessToken = x.Split(' ').First().Trim()
                 });
                 return api;
             }).ToArray();
